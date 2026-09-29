@@ -33,6 +33,22 @@ interface GitHubCommit {
   date: string;
 }
 
+interface GitHubEventCommit {
+  message: string;
+  sha: string;
+}
+
+interface GitHubEvent {
+  type: string;
+  created_at: string;
+  repo: {
+    name: string;
+  };
+  payload?: {
+    commits?: GitHubEventCommit[];
+  };
+}
+
 function formatDate(dateStr: string): string {
   const d = new Date(dateStr);
   return d.toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
@@ -45,14 +61,14 @@ export default function TechStack() {
   useEffect(() => {
     fetch('https://api.github.com/users/erictweng/events?per_page=10')
       .then(res => res.json())
-      .then((events: any[]) => {
+      .then((events: GitHubEvent[]) => {
         const pushEvents = events
-          .filter((e: any) => e.type === 'PushEvent' && e.payload?.commits?.length)
+          .filter((e) => e.type === 'PushEvent' && e.payload?.commits?.length)
           .slice(0, 4)
-          .map((e: any) => ({
+          .map((e) => ({
             repo: e.repo.name.split('/')[1] || e.repo.name,
-            message: e.payload.commits[0].message.split('\n')[0],
-            sha: e.payload.commits[0].sha.slice(0, 7),
+            message: e.payload?.commits?.[0]?.message.split('\n')[0] ?? 'Commit',
+            sha: e.payload?.commits?.[0]?.sha.slice(0, 7) ?? 'unknown',
             date: formatDate(e.created_at),
           }));
         setCommits(pushEvents);
