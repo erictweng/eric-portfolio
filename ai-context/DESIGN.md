@@ -1,87 +1,80 @@
 # DESIGN.md — Eric's Portfolio
 
 ## Overview
-Personal portfolio for Eric Weng — a single-page scroll site showcasing projects, skills, and experience. Mobile-first, clean, typography-driven. Inspired by [mannan.io/v1](https://www.mannan.io/v1).
+Personal portfolio for Eric Weng — a single-page scroll site showcasing projects, skills, experience, and contact links. Current direction leans freelance-first while staying reusable for SWE job-search positioning.
 
 ## Tech Stack
 - **Framework:** React 19 + Vite + TypeScript
-- **Styling:** Tailwind CSS v4
+- **Styling:** Tailwind CSS v4 plus CSS custom properties
 - **Animations:** Framer Motion
-- **Contact Form:** React Hook Form + Formspree (no backend)
-- **Deployment:** Vercel
 - **Icons:** Lucide React
+- **Deployment:** GitHub Pages
 
 ## Theme System
-**Toggle between dark and light.** Persist preference in localStorage, default to system preference.
+The site currently defaults to dark mode through `ThemeProvider`. Light-theme CSS variables still exist, but the visible product is intentionally dark-first until positioning is finalized.
 
 ### Dark Theme
-- **Accent:** Orange (#F97316 or similar)
-- **Background:** Black (#000000 or near-black)
-- **Text:** White
+- **Accent:** Orange (#F97316)
+- **Background:** Black (#000000)
+- **Text:** White (#FFFFFF)
 
-### Light Theme
-- **Accent:** Navy Blue (#1E3A5F or similar)
+### Light Theme Variables
+- **Accent:** Navy Blue (#1E3A5F)
 - **Background:** White (#FFFFFF)
-- **Text:** Black
+- **Text:** Black (#000000)
+
+### Tailwind v4 Note
+Use inline styles with `var(--color-accent)`, `var(--color-bg)`, and `var(--color-text)` for theme-aware colors. Do not assume custom Tailwind color utilities are available.
 
 ## Sections (scroll order)
 
 ### 1. Hero
-- Name: Eric Weng
-- Title/tagline (software engineer)
-- Short pitch (1-2 sentences)
-- Photo placeholder
-- CTA button → scroll to Contact
+- Giant outlined `ERIC WENG` wordmark in Orbitron 900.
+- Orange accent line through the name.
+- Subtitle: `FULL STACK SOFTWARE ENGINEER`.
+- Hero image behind wordmark.
+- Tilted scrolling skill marquee.
+- Bouncing scroll indicator.
 
-### 2. What I Do
-- Services/skills grid (3-4 cards)
-- Icons + short descriptions
-- Examples: Full-Stack Development, ML/AI, System Design, Cloud Infrastructure
+### 2. About
+- Narrative section explaining Eric's motivation and working style.
 
-### 3. Projects
-- 4 project cards
-- Each: title, description, tech tags, link (GitHub/live)
-- Placeholder content for now — Eric will fill in real projects
+### 3. Services
+- Five service/outcome cards with Lucide icons.
+- Current content is freelance/business oriented.
 
-### 4. Tech Stack
-- Visual grid/cloud of technologies
-- Categories: Languages, Frameworks, Tools, Cloud
-- Examples: React, TypeScript, Python, Java, AWS, Docker, Kubernetes, TensorFlow
+### 4. Projects
+- Project cards for Eric's work, currently including real project direction rather than blank placeholders.
 
-### 5. Experience Timeline
-- Vertical timeline layout
-- Each entry: company, role, dates, 2-3 bullet points
-- Placeholder content for now
+### 5. Tech Stack
+- Categorized technology badges.
+- Live GitHub feed from the public GitHub Events API.
+- Handles empty/fetch-failure state by showing no recent activity.
 
-### 6. About
-- Personal narrative section
-- Who Eric is, what drives him
-- Placeholder text
+### 6. Experience
+- Timeline-style experience section.
 
 ### 7. Contact
-- Form: name, email, message
-- Submit via Formspree
-- Also show email link
-- Social links (GitHub, LinkedIn)
+- Contact/social links for GitHub, LinkedIn, and email.
 
 ## Navigation
-- Fixed top nav bar
-- Links: What I Do, Projects, Tech Stack, Experience, About, Contact
-- Theme toggle button in nav
-- Smooth scroll to sections
+- Minimal fixed top nav.
+- Left: `Eric Weng` wordmark.
+- Right: GitHub, LinkedIn, and Mail icons.
+- No nav links, hamburger, or visible theme toggle in the current design.
 
 ## Design Principles
-- **Mobile-first** — responsive from 320px up
-- **Typography-driven** — clean fonts, good hierarchy
-- **Minimal** — no clutter, lots of whitespace
-- **Smooth** — Framer Motion for scroll reveals and hover effects
-- **Fast** — Vite, code-split, optimized images
+- **Dark-first visual identity** — black/white/orange system.
+- **Typography-driven** — Orbitron for identity moments.
+- **Minimal navigation** — social/contact actions only.
+- **Smooth but restrained motion** — Framer Motion reveal and marquee effects.
+- **Fast static deployment** — Vite build served by GitHub Pages.
 
 ## Success Criteria
-- [ ] All 7 sections render correctly
-- [ ] Theme toggle works + persists
-- [ ] Mobile responsive (320px to 1440px+)
-- [ ] Smooth scroll navigation
-- [ ] Contact form submits
-- [ ] Lighthouse score > 90 on all categories
-- [ ] Deploys to Vercel
+- [x] All seven sections render correctly.
+- [x] Lint passes.
+- [x] Production build passes.
+- [x] Preview smoke test renders the page and sections.
+- [ ] Finalize portfolio positioning: freelance, SWE jobs, or hybrid.
+- [ ] Finalize whether light mode remains product behavior or is removed.
+- [ ] Run a full accessibility/responsive QA pass.

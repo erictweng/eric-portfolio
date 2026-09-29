@@ -1,99 +1,126 @@
 # Repository Map
 
-_Last reviewed: {{DATE}}_
+_Last reviewed: 2026-09-29_
 
 ## Directory Structure
 
-```
-{{APP_NAME}}/
-├── CLAUDE.md                    # Entry point
+```text
+eric-portfolio/
+├── README.md
+├── CLAUDE.md
+├── package.json
+├── package-lock.json
+├── vite.config.ts
+├── eslint.config.js
+├── tsconfig*.json
+├── tailwind.config.js
+├── index.html
+├── business-card.html
+├── public/
+│   ├── business-card.html
+│   └── eric-hero.jpg
+├── src/
+│   ├── App.tsx
+│   ├── main.tsx
+│   ├── index.css
+│   ├── assets/
+│   │   └── eric-hero.jpg
+│   ├── components/
+│   │   ├── Footer.tsx
+│   │   ├── LoadingSplash.tsx
+│   │   └── Navbar.tsx
+│   ├── context/
+│   │   ├── ThemeContext.tsx
+│   │   └── theme.ts
+│   ├── hooks/
+│   │   └── useTheme.ts
+│   └── sections/
+│       ├── About.tsx
+│       ├── Contact.tsx
+│       ├── Experience.tsx
+│       ├── Hero.tsx
+│       ├── Projects.tsx
+│       ├── Services.tsx
+│       └── TechStack.tsx
 ├── ai-context/
-│   ├── 01-CURRENT-STATE.md      # Position tracker
-│   ├── 01-DESIGN.md             # MVP design doc
-│   ├── 02-RULES.md              # Operating rules
-│   ├── 03-REPO-MAP.md           # This file
-│   ├── 05-DECISIONS.md          # Architecture decisions
-│   ├── 06-IDEATION.md           # Idea backlog
-│   ├── 07-IMPACT-ANALYSIS.md    # Change impact template
-│   ├── 08-PRODUCTION-READINESS.md # Prod checklist
-│   ├── sprints/                 # Sprint task specs
-│   ├── execution/               # Preflight, autonomous state
-│   └── retro/                   # Sprint retrospectives
-└── [app code — expand below]
+│   ├── CURRENT-STATE.md
+│   ├── DESIGN.md
+│   ├── RULES.md
+│   ├── DECISIONS.md
+│   ├── REPO-MAP.md
+│   ├── ARCHITECTURE-AUDIT.md
+│   ├── DESIGN-PROCESS-AUDIT.md
+│   ├── PRODUCTION-READINESS.md
+│   ├── IMPACT-ANALYSIS.md
+│   ├── sprints/
+│   ├── execution/
+│   └── retro/
+└── .github/
+    └── workflows/
+        └── deploy.yml
 ```
 
-## App Code Structure
+## App Composition
 
-<details>
-<summary>src/ — Application source</summary>
-
-```
-src/
-├── {{EXPAND_THIS}}
-```
-
-_Expand and fill in as the project grows._
-</details>
-
-<details>
-<summary>tests/ — Test files</summary>
-
-```
-tests/
-├── unit/
-└── integration/
-```
-</details>
-
-## Module Dependency Graph
-
-Map which modules depend on which. **Agents must check this before modifying shared modules.**
-
-```
-[module A] → [module B] → [module C]
-                        → [module D]
-[module E] → [module B]  ← SHARED (high-risk)
+```text
+main.tsx
+  └─ ThemeProvider (context/ThemeContext.tsx)
+      └─ App.tsx
+          ├─ Navbar
+          ├─ Hero
+          ├─ About
+          ├─ Services
+          ├─ Projects
+          ├─ TechStack
+          ├─ Experience
+          ├─ Contact
+          └─ Footer
 ```
 
-### Shared Modules (High-Risk)
-These are imported by 3+ other files. Changes here require impact analysis.
+## Shared Modules
 
 | Module | Imported By | Risk |
-|--------|------------|------|
-| _e.g. utils/transform.js_ | _routes, frontend, tests_ | HIGH |
-
-### API Surface
-Public endpoints and their contracts.
-
-| Method | Path | Description | Request | Response |
-|--------|------|-------------|---------|----------|
-| | | | | |
-
-## Key Files
-
-| File | Purpose | Risk Level |
-|------|---------|------------|
-| CLAUDE.md | Entry point, routing | LOW |
-| ai-context/* | Agent context | LOW |
-| _main app files_ | _describe_ | _assess_ |
+| --- | --- | --- |
+| `src/context/theme.ts` | `ThemeContext.tsx`, `hooks/useTheme.ts` | Medium — shared theme context/types |
+| `src/context/ThemeContext.tsx` | `main.tsx` | Medium — controls document theme class/localStorage |
+| `src/hooks/useTheme.ts` | Any component needing theme state | Medium — throws if used outside provider |
+| `src/index.css` | Whole app via `main.tsx` | High — global theme variables and base styles |
+| `src/App.tsx` | `main.tsx` | Medium — controls section ordering |
 
 ## External Dependencies
 
-| Dependency | Purpose | Version |
-|-----------|---------|---------|
-| | | |
+| Dependency | Purpose |
+| --- | --- |
+| React / React DOM | UI runtime |
+| Vite | Dev server and production build |
+| TypeScript | Type checking |
+| Tailwind CSS v4 + `@tailwindcss/vite` | Styling pipeline |
+| Framer Motion | Section and hero animations |
+| Lucide React | Icons |
+| React Hook Form | Installed for contact form support |
+
+## API Surface
+
+No backend API. The app fetches public GitHub activity from:
+
+```text
+https://api.github.com/users/erictweng/events?per_page=10
+```
+
+Failure mode: `TechStack.tsx` catches fetch failures and renders `No recent activity`.
+
+## Build and Deployment
+
+- Local build: `npm run build`
+- Preview: `npm run preview`
+- Deploy target: GitHub Pages
+- Workflow: `.github/workflows/deploy.yml`
+- Artifact path: `dist`
 
 ## Evolution Log
-_Track major structural changes here._
 
 | Date | Change | Reason |
-|------|--------|--------|
-| | | |
-
----
-
-**Update this file when:**
-- New directories or major files are added
-- Module dependencies change
-- API surface changes
-- Shared modules are created or modified
+| --- | --- | --- |
+| 2026-09-29 | Documented real source tree and dependency graph | Replaced scaffold placeholders during Milestone 1 cleanup |
+| 2026-09-29 | Split theme context primitives into `src/context/theme.ts` | Satisfy React Fast Refresh lint rule |
+| 2026-09-29 | Removed duplicate `ThemeProvider` from `App.tsx` | Keep a single app-wide provider in `main.tsx` |
