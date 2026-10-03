@@ -6,7 +6,7 @@ const socials = [
   { icon: Mail, href: 'mailto:erictweng@gmail.com' },
 ];
 
-const marqueeText = 'ERIC WENG ★ FULL STACK SOFTWARE ENGINEER ★ DANVILLE, CA ★ ';
+const marqueeText = 'ERIC WENG ★ FORWARD DEPLOYED ENGINEER ★ DANVILLE, CA ★ ';
 
 export default function Footer() {
   return (

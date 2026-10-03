@@ -27,7 +27,7 @@ Smoke test confirmed:
 - Page title: `🐴 Eric Weng — Portfolio`
 - Root page renders.
 - Dark theme class is applied.
-- Hero includes `FULL STACK SOFTWARE ENGINEER`.
+- Hero includes `FORWARD DEPLOYED ENGINEER`.
 - Seven sections exist: `hero`, `about`, `services`, `projects`, `tech-stack`, `experience`, `contact`.
 
 ### Architecture

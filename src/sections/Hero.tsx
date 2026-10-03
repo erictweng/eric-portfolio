@@ -69,7 +69,7 @@ export default function Hero() {
             color: 'var(--color-accent)',
           }}
         >
-          Full Stack Software Engineer
+          Forward Deployed Engineer
         </motion.p>
       </div>
 

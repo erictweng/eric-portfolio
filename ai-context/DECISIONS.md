@@ -10,7 +10,7 @@
 ## Hero Design
 - Giant outlined `ERIC WENG` — Orbitron font, weight 900, transparent fill, stroke-only
 - Accent-colored horizontal line cuts through center of name
-- `FULL STACK SOFTWARE ENGINEER` subtitle in accent color, Orbitron, wide tracking
+- `FORWARD DEPLOYED ENGINEER` subtitle in accent color, Orbitron, wide tracking
 - Tilted skills marquee ribbon at bottom (2° tilt, accent bg, inverted text color)
 - Bouncing scroll-down arrow at bottom
 - NO CTA buttons, NO one-liner — pure visual statement

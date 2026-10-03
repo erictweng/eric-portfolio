@@ -31,7 +31,7 @@ Use inline styles with `var(--color-accent)`, `var(--color-bg)`, and `var(--colo
 ### 1. Hero
 - Giant outlined `ERIC WENG` wordmark in Orbitron 900.
 - Orange accent line through the name.
-- Subtitle: `FULL STACK SOFTWARE ENGINEER`.
+- Subtitle: `FORWARD DEPLOYED ENGINEER`.
 - Hero image behind wordmark.
 - Tilted scrolling skill marquee.
 - Bouncing scroll indicator.

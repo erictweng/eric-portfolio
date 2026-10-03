@@ -29,7 +29,7 @@ preview smoke  -> passed at http://127.0.0.1:4173/
 Smoke test confirmed:
 
 - Page title: `🐴 Eric Weng — Portfolio`
-- Hero renders with `FULL STACK SOFTWARE ENGINEER`.
+- Hero renders with `FORWARD DEPLOYED ENGINEER`.
 - Seven sections render: `hero`, `about`, `services`, `projects`, `tech-stack`, `experience`, `contact`.
 
 ## Key Findings
