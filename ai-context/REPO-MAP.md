@@ -34,6 +34,8 @@ eric-portfolio/
 │   │   └── theme.ts
 │   ├── hooks/
 │   │   └── useTheme.ts
+│   ├── lib/
+│   │   └── github.ts
 │   └── sections/
 │       ├── About.tsx
 │       ├── Contact.tsx
@@ -86,6 +88,7 @@ main.tsx
 | `src/hooks/useTheme.ts` | Any component needing theme state | Medium — throws if used outside provider |
 | `src/index.css` | Whole app via `main.tsx` | High — global theme variables and base styles |
 | `src/App.tsx` | `main.tsx` | Medium — controls section ordering |
+| `src/lib/github.ts` | `sections/TechStack.tsx` | Low — GitHub activity feed fetch, commit lookup, session cache |
 
 ## External Dependencies
 
@@ -101,13 +104,18 @@ main.tsx
 
 ## API Surface
 
-No backend API. The app fetches public GitHub activity from:
+No backend API. `src/lib/github.ts` fetches public GitHub activity (unauthenticated, 60 req/hr per visitor IP):
 
 ```text
-https://api.github.com/users/erictweng/events?per_page=10
+GET https://api.github.com/users/erictweng/events/public?per_page=30
+GET https://api.github.com/repos/{owner}/{repo}/commits/{head}   (one per shown push, max 4)
 ```
 
-Failure mode: `TechStack.tsx` catches fetch failures and renders `No recent activity`.
+- PushEvent payloads no longer include `commits`; the commit message comes from looking up `payload.head`.
+- Events are sorted by `created_at` (API order is not strictly chronological) and deduped by repo+SHA.
+- A failed commit lookup falls back to `Pushed to <branch>`.
+- Results are cached in `sessionStorage` for 5 minutes.
+- If the events request fails, `TechStack.tsx` renders `No recent activity`.
 
 ## Build and Deployment
 

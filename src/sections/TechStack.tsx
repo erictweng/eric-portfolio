@@ -1,6 +1,9 @@
 import { motion } from 'framer-motion';
 import { useState, useEffect } from 'react';
 import { Github, GitCommit } from 'lucide-react';
+import { fetchRecentCommits, readCachedCommits, writeCachedCommits, type FeedCommit } from '../lib/github';
+
+const GITHUB_USER = 'erictweng';
 
 const techColors: Record<string, string> = {
   'JavaScript': '#F7DF1E',
@@ -26,56 +29,29 @@ const categories = [
   { label: 'Platforms', items: ['Unix/Linux', 'macOS', 'Windows'] },
 ];
 
-interface GitHubCommit {
-  repo: string;
-  message: string;
-  sha: string;
-  date: string;
-}
-
-interface GitHubEventCommit {
-  message: string;
-  sha: string;
-}
-
-interface GitHubEvent {
-  type: string;
-  created_at: string;
-  repo: {
-    name: string;
-  };
-  payload?: {
-    commits?: GitHubEventCommit[];
-  };
-}
-
-function formatDate(dateStr: string): string {
-  const d = new Date(dateStr);
-  return d.toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
-}
-
 export default function TechStack() {
-  const [commits, setCommits] = useState<GitHubCommit[]>([]);
-  const [loading, setLoading] = useState(true);
+  const [cached] = useState(() => readCachedCommits(GITHUB_USER));
+  const [commits, setCommits] = useState<FeedCommit[]>(cached ?? []);
+  const [loading, setLoading] = useState(cached === null);
 
   useEffect(() => {
-    fetch('https://api.github.com/users/erictweng/events?per_page=10')
-      .then(res => res.json())
-      .then((events: GitHubEvent[]) => {
-        const pushEvents = events
-          .filter((e) => e.type === 'PushEvent' && e.payload?.commits?.length)
-          .slice(0, 4)
-          .map((e) => ({
-            repo: e.repo.name.split('/')[1] || e.repo.name,
-            message: e.payload?.commits?.[0]?.message.split('\n')[0] ?? 'Commit',
-            sha: e.payload?.commits?.[0]?.sha.slice(0, 7) ?? 'unknown',
-            date: formatDate(e.created_at),
-          }));
-        setCommits(pushEvents);
+    if (cached !== null) return;
+
+    const controller = new AbortController();
+    fetchRecentCommits(GITHUB_USER, { signal: controller.signal })
+      .then((recent) => {
+        writeCachedCommits(GITHUB_USER, recent);
+        setCommits(recent);
+        setLoading(false);
       })
-      .catch(() => setCommits([]))
-      .finally(() => setLoading(false));
-  }, []);
+      .catch(() => {
+        if (controller.signal.aborted) return;
+        setCommits([]);
+        setLoading(false);
+      });
+
+    return () => controller.abort();
+  }, [cached]);
 
   return (
     <section
@@ -214,9 +190,9 @@ export default function TechStack() {
                   No recent activity
                 </p>
               ) : (
-                commits.map((c, i) => (
+                commits.map((c) => (
                   <div
-                    key={i}
+                    key={`${c.repo}-${c.sha}`}
                     className="flex items-start gap-3 pb-3"
                     style={{ borderBottom: '1px solid color-mix(in srgb, var(--color-text) 10%, transparent)' }}
                   >
