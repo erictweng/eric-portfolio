@@ -6,27 +6,63 @@ import { fetchRecentCommits, readCachedCommits, writeCachedCommits, type FeedCom
 const GITHUB_USER = 'erictweng';
 
 const techColors: Record<string, string> = {
+  // Languages
   'JavaScript': '#F7DF1E',
   'TypeScript': '#3178C6',
   'Python': '#3776AB',
   'Java': '#ED8B00',
   'C/C++': '#00599C',
   'Rust': '#CE422B',
+  'SQL': '#336791',
+  // Frameworks
   'React': '#61DAFB',
+  'Next.js': 'var(--color-text)',
+  'Node.js': '#5FA04E',
+  'Express': '#AAAAAA',
+  'Flask': '#3BABC3',
+  'Tailwind CSS': '#06B6D4',
+  'Vite': '#646CFF',
+  // Data & Backend
+  'PostgreSQL': '#4169E1',
+  'Supabase': '#3ECF8E',
+  'SQLite': '#0F80CC',
+  // APIs & Integrations
+  'Google APIs': '#4285F4',
+  'Slack API': '#E01E5A',
+  'REST APIs': '#FF6C37',
+  'Cron Jobs': '#F97316',
+  // Testing
+  'Playwright': '#2EAD33',
+  'Jest': '#C21325',
+  'Vitest': '#729B1B',
+  'Testing Library': '#E33332',
+  // DevOps & Cloud
   'Git': '#F05032',
-  'NoSQL': '#4DB33D',
-  'Claude/Cursor': '#D4A574',
-  'ESP32': '#E7352C',
+  'Docker': '#2496ED',
+  'GitHub Actions': '#2088FF',
+  'Vercel': 'var(--color-text)',
+  'Render': '#46E3B7',
+  'Google Cloud': '#FBBC04',
   'Unix/Linux': '#FCC624',
-  'macOS': '#999999',
-  'Windows': '#0078D6',
+  // Robotics & Simulation
+  'ESP32': '#E7352C',
+  'MuJoCo': '#8B5CF6',
+  'NumPy': '#4DABCF',
+  // AI Tooling
+  'Claude Code': '#D97757',
+  'Cursor': '#D4A574',
+  'Hermes Agents': '#A78BFA',
 };
 
 const categories = [
-  { label: 'Languages', items: ['JavaScript', 'TypeScript', 'Python', 'Java', 'C/C++', 'Rust'] },
-  { label: 'Frameworks', items: ['React'] },
-  { label: 'Tools & Data', items: ['Git', 'NoSQL', 'Claude/Cursor', 'ESP32'] },
-  { label: 'Platforms', items: ['Unix/Linux', 'macOS', 'Windows'] },
+  { label: 'Languages', items: ['JavaScript', 'TypeScript', 'Python', 'Java', 'C/C++', 'Rust', 'SQL'] },
+  { label: 'Frameworks', items: ['React', 'Next.js', 'Node.js', 'Express', 'Flask', 'Tailwind CSS', 'Vite'] },
+  { label: 'Data & Backend', items: ['PostgreSQL', 'Supabase', 'SQLite'] },
+  { label: 'APIs & Integrations', items: ['Google APIs', 'Slack API', 'REST APIs', 'Cron Jobs'] },
+  { label: 'Testing', items: ['Playwright', 'Jest', 'Vitest', 'Testing Library'] },
+  { label: 'DevOps & Cloud', items: ['Git', 'Docker', 'GitHub Actions', 'Vercel', 'Render', 'Google Cloud', 'Unix/Linux'] },
+  { label: 'Robotics & Simulation', items: ['ESP32', 'MuJoCo', 'NumPy'] },
+  { label: 'AI Tooling', items: ['Claude Code', 'Cursor', 'Hermes Agents'] },
 ];
 
 export default function TechStack() {

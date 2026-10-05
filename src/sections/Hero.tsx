@@ -1,6 +1,13 @@
 import { motion } from 'framer-motion';
 import heroPhoto from '../assets/eric-hero.jpg';
 
+const marqueeSkills = [
+  'Python', 'TypeScript', 'JavaScript', 'React', 'Next.js', 'Node.js', 'PostgreSQL',
+  'Supabase', 'Docker', 'Google APIs', 'Playwright', 'Java', 'C/C++', 'Rust',
+  'ESP32', 'MuJoCo', 'Claude Code', 'Unix/Linux',
+];
+const marqueeText = marqueeSkills.map((s) => s.toUpperCase()).join('\u00A0\u00A0★\u00A0\u00A0') + '\u00A0\u00A0★\u00A0\u00A0';
+
 export default function Hero() {
   return (
     <section
@@ -103,7 +110,7 @@ export default function Hero() {
         >
           <div
             className="flex whitespace-nowrap"
-            style={{ animation: 'marquee 35s linear infinite' }}
+            style={{ animation: 'marquee 45s linear infinite' }}
           >
             {[0, 1].map((i) => (
               <span
@@ -111,7 +118,7 @@ export default function Hero() {
                 className="font-bold uppercase text-2xl tracking-wider px-4"
                 style={{ fontFamily: "'Orbitron', sans-serif", color: 'var(--color-bg)' }}
               >
-                PYTHON &nbsp;★&nbsp; JAVA &nbsp;★&nbsp; C/C++ &nbsp;★&nbsp; JAVASCRIPT &nbsp;★&nbsp; REACT &nbsp;★&nbsp; TYPESCRIPT &nbsp;★&nbsp; RUST &nbsp;★&nbsp; GIT &nbsp;★&nbsp; CLAUDE/CURSOR &nbsp;★&nbsp; ESP32 &nbsp;★&nbsp; NOSQL &nbsp;★&nbsp; UNIX/LINUX &nbsp;★&nbsp; MACOS &nbsp;★&nbsp; WINDOWS &nbsp;★&nbsp;&nbsp;
+                {marqueeText}
               </span>
             ))}
           </div>
