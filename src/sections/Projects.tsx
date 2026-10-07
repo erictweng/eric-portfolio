@@ -18,6 +18,12 @@ const projects: Project[] = [
     linkLabel: 'Play Quest Coder',
   },
   {
+    title: 'Hermes Agent Orchestration',
+    description: 'A workflow layer for running autonomous coding agents on real projects. Built hproj to scaffold project workspaces and hsub to launch Claude Code and Hermes workers one mini-milestone at a time — with a work queue, project dashboard, daily digests, live Discord progress updates, per-project verification recipes, and a goal-checker gate before work is marked verified.',
+    tech: ['Python', 'Hermes Agent', 'Claude Code', 'Discord', 'CLI Tooling'],
+    link: null,
+  },
+  {
     title: 'Equipment Management System',
     description: 'Real-time equipment tracking and shift management tool for 24/7 operations. Centralized dashboard integrating multiple APIs into a single source of truth for operators and engineering teams.',
     tech: ['React', 'TypeScript', 'REST APIs', 'Slack/Jira Integration'],
