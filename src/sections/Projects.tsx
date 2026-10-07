@@ -1,6 +1,22 @@
 import { motion } from 'framer-motion';
+import { ArrowUpRight } from 'lucide-react';
 
-const projects = [
+interface Project {
+  title: string;
+  description: string;
+  tech: string[];
+  link: string | null;
+  linkLabel?: string;
+}
+
+const projects: Project[] = [
+  {
+    title: 'Quest Coder',
+    description: 'A coding RPG that teaches algorithms through quests. Write Python in a compiler-first workspace, test it against a sandboxed code runner, and earn XP clearing stages and boss fights. First campaign: Climbing Stairs (1-D dynamic programming).',
+    tech: ['Next.js', 'TypeScript', 'Supabase', 'Python', 'Docker', 'Playwright'],
+    link: 'https://quest-coder.vercel.app',
+    linkLabel: 'Play Quest Coder',
+  },
   {
     title: 'Equipment Management System',
     description: 'Real-time equipment tracking and shift management tool for 24/7 operations. Centralized dashboard integrating multiple APIs into a single source of truth for operators and engineering teams.',
@@ -18,8 +34,54 @@ const projects = [
     description: 'Landing page for VROlympics — a virtual reality competitive events platform featuring real-time scoring and live leaderboards.',
     tech: ['React', 'TypeScript', 'Vercel'],
     link: 'https://vrolympics1.vercel.app',
+    linkLabel: 'Visit site',
   },
 ];
+
+function CardBody({ project }: { project: Project }) {
+  return (
+    <>
+      <h3
+        className="text-xl font-bold mb-3"
+        style={{ color: 'var(--color-text)' }}
+      >
+        {project.title}
+      </h3>
+
+      <p
+        className="text-sm leading-relaxed mb-5 opacity-70"
+        style={{ color: 'var(--color-text)' }}
+      >
+        {project.description}
+      </p>
+
+      <div className="flex flex-wrap gap-2">
+        {project.tech.map((t) => (
+          <span
+            key={t}
+            className="px-3 py-1 text-xs rounded-full"
+            style={{
+              border: '1px solid var(--color-accent)',
+              color: 'var(--color-accent)',
+            }}
+          >
+            {t}
+          </span>
+        ))}
+      </div>
+
+      {project.link && (
+        <span
+          className="project-cta mt-auto pt-6 inline-flex items-center gap-1 text-xs font-bold uppercase tracking-wider"
+          style={{ color: 'var(--color-accent)' }}
+        >
+          {project.linkLabel ?? 'Visit'}
+          <ArrowUpRight size={14} aria-hidden="true" />
+        </span>
+      )}
+    </>
+  );
+}
 
 export default function Projects() {
   return (
@@ -42,48 +104,34 @@ export default function Projects() {
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {projects.map((project, index) => {
-            return (
-            <motion.div
-              key={project.title}
-              initial={{ opacity: 0 }}
-              whileInView={{ opacity: 1 }}
-              transition={{ duration: 0.8, delay: index * 0.2, ease: 'easeOut' }}
-              viewport={{ once: true, margin: '-50px' }}
-              className={`project-card rounded-xl p-6 ${project.link ? 'cursor-pointer' : 'cursor-default'}`}
-              style={{
-                backgroundColor: 'var(--color-bg)',
-              }}
-              onClick={() => project.link && window.open(project.link, '_blank')}
-            >
-              <h3
-                className="text-xl font-bold mb-3"
-                style={{ color: 'var(--color-text)' }}
-              >
-                {project.title}
-              </h3>
+            const motionProps = {
+              initial: { opacity: 0 },
+              whileInView: { opacity: 1 },
+              transition: { duration: 0.8, delay: index * 0.2, ease: 'easeOut' as const },
+              viewport: { once: true, margin: '-50px' },
+              style: { backgroundColor: 'var(--color-bg)' },
+            };
 
-              <p
-                className="text-sm leading-relaxed mb-5 opacity-70"
-                style={{ color: 'var(--color-text)' }}
+            return project.link ? (
+              <motion.a
+                key={project.title}
+                {...motionProps}
+                href={project.link}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label={`${project.linkLabel ?? 'Visit'}: ${project.title} (opens in a new tab)`}
+                className="project-card rounded-xl p-6 flex flex-col cursor-pointer"
               >
-                {project.description}
-              </p>
-
-              <div className="flex flex-wrap gap-2">
-                {project.tech.map((t) => (
-                  <span
-                    key={t}
-                    className="px-3 py-1 text-xs rounded-full"
-                    style={{
-                      border: '1px solid var(--color-accent)',
-                      color: 'var(--color-accent)',
-                    }}
-                  >
-                    {t}
-                  </span>
-                ))}
-              </div>
-            </motion.div>
+                <CardBody project={project} />
+              </motion.a>
+            ) : (
+              <motion.div
+                key={project.title}
+                {...motionProps}
+                className="project-card rounded-xl p-6 flex flex-col cursor-default"
+              >
+                <CardBody project={project} />
+              </motion.div>
             );
           })}
         </div>
@@ -97,6 +145,16 @@ export default function Projects() {
         .project-card:hover {
           transform: translateY(-6px);
           border-color: var(--color-accent);
+        }
+        a.project-card:focus-visible {
+          outline: 2px solid var(--color-accent);
+          outline-offset: 4px;
+          border-color: var(--color-accent);
+        }
+        a.project-card:hover .project-cta,
+        a.project-card:focus-visible .project-cta {
+          text-decoration: underline;
+          text-underline-offset: 4px;
         }
       `}</style>
     </section>
