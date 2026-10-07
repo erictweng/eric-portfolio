@@ -24,6 +24,13 @@ const projects: Project[] = [
     link: null,
   },
   {
+    title: 'Salesroom — Digital Sales Room',
+    description: 'Reps curate a per-account room of content for a buyer, and every room view, PDF open, and video milestone flows back as identity-attributed engagement in the rep\'s live feed. Drag-and-drop Kanban content board, CRM-scoped buyer access, publish controls, and insight cards — backed by a mock Salesforce-style CRM.',
+    tech: ['Next.js', 'TypeScript', 'SQLite', 'Tailwind CSS', 'dnd-kit', 'Vitest'],
+    link: 'https://github.com/erictweng/salesroom-app',
+    linkLabel: 'View on GitHub',
+  },
+  {
     title: 'Equipment Management System',
     description: 'Real-time equipment tracking and shift management tool for 24/7 operations. Centralized dashboard integrating multiple APIs into a single source of truth for operators and engineering teams.',
     tech: ['React', 'TypeScript', 'REST APIs', 'Slack/Jira Integration'],
