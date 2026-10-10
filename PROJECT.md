@@ -42,3 +42,7 @@ Discord thread:
 Project — Eric Portfolio
 1554638890281996299
 ```
+
+## Team
+Permanent specialist agents for this project (`kanban_project.py staff`). The generalist, reviewer and debugger always exist and aren't listed. Format: `- key | Role | lane`.
+- uiux | UI/UX Developer | src/ sections, components, hooks, styles and animations, public assets, lint/build and phone + desktop screenshots
