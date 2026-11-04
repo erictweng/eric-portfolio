@@ -71,23 +71,29 @@ export default function About() {
 
           <h2 style={{ fontFamily: "'Orbitron', sans-serif", fontWeight: 800, lineHeight: 1.15, marginBottom: '2rem' }}>
             <span style={{ display: 'block', fontSize: 'clamp(2rem, 4vw, 3.5rem)', color: 'var(--color-text)' }}>THE</span>
-            <span style={{ display: 'block', fontSize: 'clamp(2rem, 4vw, 3.5rem)', color: 'var(--color-accent)' }}>&lsquo;WHY&rsquo;</span>
-            <span style={{ display: 'block', fontSize: 'clamp(2rem, 4vw, 3.5rem)', color: 'var(--color-text)' }}>BEHIND WHO I AM</span>
+            <span style={{ display: 'block', fontSize: 'clamp(2rem, 4vw, 3.5rem)', color: 'var(--color-accent)' }}>BIBLIOGRAPHY</span>
           </h2>
 
           <div style={{ maxWidth: '600px' }} className="space-y-6">
             <p style={{ color: 'var(--color-text)', opacity: 0.7, lineHeight: 1.8, fontSize: '1.05rem' }}>
-              Growing up in Danville, I was the kid who asked &lsquo;why&rsquo; about everything
-              — why is the sky blue, why do we build things this way, why does this work
-              but that doesn&apos;t. That curiosity never stopped. It&apos;s what pulled me into
-              software engineering, and it&apos;s what I bring to every project I build.
+              My favorite quote: Frank Ocean is my favorite artist, because to be frank with the
+              ocean you need to be honest with the sea. Anyways, I&apos;m Eric and I&apos;m a
+              computer engineer that builds. From building a vibe coded website to a live golf
+              leaderboard so my friends can&apos;t lie about their scores, to a real-time dashboard
+              that stopped 80 robot operators from asking &ldquo;wait, who has this robot?&rdquo;
+              every shift change.
             </p>
             <p style={{ color: 'var(--color-text)', opacity: 0.7, lineHeight: 1.8, fontSize: '1.05rem' }}>
-              I don&apos;t just write code — I dig into the problem, understand the &lsquo;why&rsquo;
-              behind what you need, and build something that actually solves it. Whether
-              it&apos;s a local business that needs more customers online or a complex web
-              application, I approach every project with the same question: &ldquo;Why does
-              this matter, and how do I make it great?&rdquo;
+              I taught a tiny Arm chip to read ASL fingerspelling (2nd place at a hackathon, right
+              after my first model aced its test set and then failed on every real hand). I built a
+              coding RPG because LeetCode wasn&apos;t punishing me enough, and a crew of AI agents
+              that write code while I review it like a very demanding manager. It all started in
+              2018 with turning spreadsheets for 180 cell towers into a dashboard, which is the
+              least glamorous and most honest origin story I&apos;ve got.
+            </p>
+            <p style={{ color: 'var(--color-text)', opacity: 0.7, lineHeight: 1.8, fontSize: '1.05rem' }}>
+              If it&apos;s messy, manual, or held together by Slack messages, I want to build the
+              thing that fixes it.
             </p>
           </div>
         </motion.div>
