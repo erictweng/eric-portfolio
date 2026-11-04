@@ -3,20 +3,20 @@ import { motion } from 'framer-motion';
 const entries = [
   {
     date: 'Oct 2025 – Present',
-    company: 'The Bot Company',
-    role: 'Robotics Operator & Full Stack Engineer',
+    company: 'Stealth Startup',
+    role: 'QCS & Product Engineer',
     description: 'Building real-time operational tools and coordinating autonomous robotic systems in live production environments.',
   },
   {
     date: 'Fall 2022 – Fall 2025',
     company: 'UC Santa Cruz',
-    role: 'B.S. Computer Science',
+    role: 'B.S. Computer Engineering',
     description: 'Studied distributed systems, machine learning, and software engineering fundamentals.',
   },
   {
-    date: '2017',
-    company: 'TTS-Wireless',
-    role: 'Database Engineer',
+    date: 'Aug 2018 – Feb 2019',
+    company: 'TTS Wireless',
+    role: 'Software Engineering Intern',
     description: 'Managed and optimized database systems for wireless telecommunications infrastructure.',
   },
 ];

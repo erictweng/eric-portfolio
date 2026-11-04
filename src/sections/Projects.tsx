@@ -18,6 +18,13 @@ const projects: Project[] = [
     linkLabel: 'Play Quest Coder',
   },
   {
+    title: 'Fingerspell',
+    description: 'A device that reads ASL fingerspelling from a camera and turns it into text on screen, running entirely on an Arm microcontroller with no phone or cloud. Two hand-tracking models on the NPU find 21 hand keypoints, and a small classifier reads the letter from them — all 26 letters at 15–16 FPS. 2nd place at the Arm + Meta ExecuTorch hackathon.',
+    tech: ['PyTorch', 'ExecuTorch', 'Arm Vela', 'C/C++', 'Embedded'],
+    link: 'https://devpost.com/software/fingerspell-e9y3ag',
+    linkLabel: 'View on Devpost',
+  },
+  {
     title: 'Hermes Agent Orchestration',
     description: 'A workflow layer for running autonomous coding agents on real projects. Built hproj to scaffold project workspaces and hsub to launch Claude Code and Hermes workers one mini-milestone at a time — with a work queue, project dashboard, daily digests, live Discord progress updates, per-project verification recipes, and a goal-checker gate before work is marked verified.',
     tech: ['Python', 'Hermes Agent', 'Claude Code', 'Discord', 'CLI Tooling'],
@@ -40,7 +47,8 @@ const projects: Project[] = [
     title: 'Golf Leaderboard',
     description: 'Match and tournament tracking app for golfers — create rounds, track scores per hole, and compete on persistent leaderboards.',
     tech: ['React', 'TypeScript', 'Tailwind'],
-    link: null,
+    link: 'https://golfleaderboard.live/',
+    linkLabel: 'Visit site',
   },
   {
     title: 'VROlympics Landing Page',
