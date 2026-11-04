@@ -9,7 +9,7 @@ export default function Navbar() {
           <a href="https://github.com/erictweng" target="_blank" rel="noopener noreferrer" className="text-text/80 hover:text-accent transition-colors">
             <Github size={20} />
           </a>
-          <a href="https://linkedin.com/in/ericweng" target="_blank" rel="noopener noreferrer" className="text-text/80 hover:text-accent transition-colors">
+          <a href="https://www.linkedin.com/in/erictweng" target="_blank" rel="noopener noreferrer" className="text-text/80 hover:text-accent transition-colors">
             <Linkedin size={20} />
           </a>
           <a href="mailto:erictweng@gmail.com" className="text-text/80 hover:text-accent transition-colors">
